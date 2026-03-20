@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -69,7 +70,7 @@ export default function Navbar() {
           }}
         >
           {/* Logo */}
-          <a
+          <Link
             href="/"
             className="flex items-center flex-shrink-0"
             aria-label="FuturOpanishad Home"
@@ -91,7 +92,7 @@ export default function Navbar() {
                 priority
               />
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-1 list-none m-0 p-0">
@@ -100,7 +101,7 @@ export default function Navbar() {
 
               return (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="relative inline-flex items-center text-sm font-semibold px-4 py-2 rounded-full transition-all duration-250 no-underline"
                     style={{
@@ -134,7 +135,7 @@ export default function Navbar() {
                         style={{ background: "var(--primary-2, #c57443)" }}
                       />
                     )}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
@@ -143,7 +144,7 @@ export default function Navbar() {
           {/* Right Side */}
           <div className="flex items-center gap-3">
             {/* CTA */}
-            <a
+            <Link
               href="#contact"
               className="hidden md:inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-full no-underline transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
               style={{
@@ -154,7 +155,7 @@ export default function Navbar() {
               }}
             >
               <span>Register Now</span>
-            </a>
+            </Link>
 
             {/* Hamburger */}
             <button
@@ -190,7 +191,7 @@ export default function Navbar() {
 
                 return (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center justify-between text-sm font-semibold no-underline px-4 py-3 rounded-xl"
@@ -207,13 +208,13 @@ export default function Navbar() {
                       {isActive && (
                         <span className="w-1.5 h-1.5 rounded-full bg-[#c57443]" />
                       )}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
             </ul>
 
-            <a
+            <Link
               href="#contact"
               onClick={() => setMobileOpen(false)}
               className="flex justify-center w-full text-sm font-bold px-5 py-3 rounded-xl text-white"
@@ -223,7 +224,7 @@ export default function Navbar() {
               }}
             >
               Get Tickets
-            </a>
+            </Link>
           </div>
         </div>
       </nav>

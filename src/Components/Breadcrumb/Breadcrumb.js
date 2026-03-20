@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { ChevronRight, Home } from "lucide-react";
 import { gsap } from "gsap";
+import Link from "next/link";
 
 export default function Breadcrumb({ items = [], title = "", bgImage = "" }) {
   const titleRef = useRef(null);
@@ -108,7 +109,7 @@ export default function Breadcrumb({ items = [], title = "", bgImage = "" }) {
                 <li key={index} className="flex items-center">
                   {!isLast ? (
                     <>
-                      <a
+                      <Link
                         href={item.href}
                         className="text-sm font-medium transition-colors duration-200"
                         style={{ color: "rgba(255,255,255,0.65)" }}
@@ -116,7 +117,7 @@ export default function Breadcrumb({ items = [], title = "", bgImage = "" }) {
                         onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
                       >
                         {item.label}
-                      </a>
+                      </Link>
                       <ChevronRight
                         className="w-3.5 h-3.5 mx-2"
                         style={{ color: "rgba(255,255,255,0.25)" }}

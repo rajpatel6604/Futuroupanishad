@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 if (typeof window !== "undefined") {
@@ -241,7 +242,7 @@ export default function AboutUs() {
 
             {/* CTA pill */}
             <div className="pt-1">
-              <a
+              <Link
                 href="#contact"
                 className="inline-flex items-center gap-2 text-sm font-bold px-6 py-3 rounded-full no-underline transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
                 style={{
@@ -254,7 +255,7 @@ export default function AboutUs() {
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

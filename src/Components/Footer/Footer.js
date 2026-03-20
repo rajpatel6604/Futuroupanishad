@@ -116,7 +116,7 @@ export default function Footer() {
             {/* Social links */}
             <div className="flex items-center gap-2 mt-6">
               {socialLinks.map((s) => (
-                <a
+                <Link
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
@@ -138,7 +138,7 @@ export default function Footer() {
                   }}
                 >
                   {s.icon}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4 list-none m-0 p-0">
               {contactDetails.map((c) => (
                 <li key={c.label}>
-                  <a
+                  <Link
                     href={c.href}
                     className="flex items-start gap-3 no-underline group"
                   >
@@ -216,7 +216,7 @@ export default function Footer() {
                         {c.value}
                       </p>
                     </div>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
