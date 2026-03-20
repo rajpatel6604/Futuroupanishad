@@ -260,7 +260,7 @@ export default function Quotes() {
           zIndex: 1,
         }}
       >
-        "
+        &quot;
       </div>
 
       {/* ── Slide number watermark */}

@@ -216,7 +216,7 @@ export default function AboutUs() {
             {/* Problem statement — compact */}
             <p className="text-sm sm:text-base leading-relaxed" style={{ color: "#475569" }}>
               After 10th & 12th exams, thousands of students face one burning question —
-              <em className="font-semibold not-italic" style={{ color: "#021e48" }}> "હવે આગળ શું?"</em>
+              <em className="font-semibold not-italic" style={{ color: "#021e48" }}> &quot;હવે આગળ શું?&quot;</em>
               {" "}Many make rushed decisions and spend years regretting them. Parents fear the
               world's distractions and pray their child walks the right road.
             </p>

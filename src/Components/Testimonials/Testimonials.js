@@ -259,7 +259,7 @@ export default function Testimonials() {
                     className="text-5xl leading-none mb-2 font-serif"
                     style={{ color: "rgba(197,116,67,0.2)", lineHeight: "1" }}
                   >
-                    "
+                    &quot;
                   </div>
 
                   {/* Content */}
