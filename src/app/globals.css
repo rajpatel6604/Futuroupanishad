@@ -1,0 +1,51 @@
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+@import "tailwindcss";
+
+:root {
+  --font-poppins: "Poppins", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --primary-1 :#021e48;
+  --primary-2 :#c57443;
+}
+
+@theme {
+  --color-primary-1: #021e48;
+  --color-primary-2: #c57443;
+}
+
+body {
+  overflow-x: hidden;
+  background: #fff;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,a {
+  font-family: "Poppins", sans-serif;
+}
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+/* testimonials */
+.custom-dot,
+.join-dot {
+  width: 12px !important;
+  height: 12px !important;
+  background: #b4b4b4;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.custom-dot.swiper-pagination-bullet-active,
+.join-dot.swiper-pagination-bullet-active {
+  width: 30px !important;
+  background: var(--primary-2);
+  border-radius: 10px;
+}
