@@ -2,42 +2,43 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const features = [
   {
-    emoji: "🎯",
+    icon: "/images/why/clarity.jpeg",
     title: "Clarity First Approach",
     desc: "We focus on removing confusion and giving clear direction for life and career.",
     tag: "Foundation",
   },
   {
-    emoji: "🧭",
+    icon: "/images/why/career.jpeg",
     title: "Career Guidance",
     desc: "Get valuable career insights and direction without any cost.",
     tag: "Direction",
   },
   {
-    emoji: "🧠",
+    icon: "/images/why/character.jpeg",
     title: "Character Building",
     desc: "Not just career — we build values, discipline, and strong personality.",
     tag: "Growth",
   },
   {
-    emoji: "📚",
+    icon: "/images/why/life.jpeg",
     title: "Real-Life Learning",
     desc: "Practical knowledge that schools usually don't teach.",
     tag: "Practical",
   },
   {
-    emoji: "🗺️",
+    icon: "/images/why/journey.jpeg",
     title: "Structured Journey",
     desc: "A step-by-step system to move from confusion to confidence.",
     tag: "System",
   },
   {
-    emoji: "👥",
+    icon: "/images/why/interactive.jpeg",
     title: "Interactive & Engaging",
     desc: "Live discussions, relatable examples, and real student connection.",
     tag: "Community",
@@ -59,9 +60,13 @@ export default function WhyFuturoupanishad() {
         diamondRef.current,
         { scale: 0, rotate: -45, opacity: 0 },
         {
-          scale: 1, rotate: 0, opacity: 1, duration: 0.6, ease: "back.out(2)",
+          scale: 1,
+          rotate: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "back.out(2)",
           scrollTrigger: { trigger: headingRef.current, start: "top 86%" },
-        }
+        },
       );
 
       // Heading
@@ -69,9 +74,13 @@ export default function WhyFuturoupanishad() {
         headingRef.current,
         { y: 50, opacity: 0, skewY: 2 },
         {
-          y: 0, opacity: 1, skewY: 0, duration: 0.9, ease: "expo.out",
+          y: 0,
+          opacity: 1,
+          skewY: 0,
+          duration: 0.9,
+          ease: "expo.out",
           scrollTrigger: { trigger: headingRef.current, start: "top 86%" },
-        }
+        },
       );
 
       // Accent line
@@ -79,9 +88,12 @@ export default function WhyFuturoupanishad() {
         accentLineRef.current,
         { scaleX: 0, transformOrigin: "left center" },
         {
-          scaleX: 1, duration: 0.75, ease: "expo.out", delay: 0.25,
+          scaleX: 1,
+          duration: 0.75,
+          ease: "expo.out",
+          delay: 0.25,
           scrollTrigger: { trigger: headingRef.current, start: "top 86%" },
-        }
+        },
       );
 
       // Tagline
@@ -89,9 +101,13 @@ export default function WhyFuturoupanishad() {
         taglineRef.current,
         { y: 25, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.65, delay: 0.4, ease: "power3.out",
+          y: 0,
+          opacity: 1,
+          duration: 0.65,
+          delay: 0.4,
+          ease: "power3.out",
           scrollTrigger: { trigger: headingRef.current, start: "top 86%" },
-        }
+        },
       );
 
       // Cards stagger
@@ -100,9 +116,13 @@ export default function WhyFuturoupanishad() {
           card,
           { y: 55, opacity: 0 },
           {
-            y: 0, opacity: 1, duration: 0.65, delay: i * 0.09, ease: "power3.out",
+            y: 0,
+            opacity: 1,
+            duration: 0.65,
+            delay: i * 0.09,
+            ease: "power3.out",
             scrollTrigger: { trigger: card, start: "top 90%" },
-          }
+          },
         );
       });
     }, sectionRef);
@@ -111,56 +131,39 @@ export default function WhyFuturoupanishad() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden py-28 px-4"
-      style={{ background: "#f8f9fc" }}
-    >
+    <section ref={sectionRef} className="relative overflow-hidden py-22 px-4">
       {/* Faint radial centre glow */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(197,116,67,0.07) 0%, transparent 70%)",
-        }}
-      />
+      <div className="pointer-events-none absolute inset-0" />
 
       {/* Dot-grid texture */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         style={{
-          backgroundImage: "radial-gradient(rgba(2,30,72,0.08) 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(rgba(2,30,72,0.08) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-
         {/* ── Header ── */}
         <div className="mb-16 text-center">
-
           <h2
             ref={headingRef}
-            className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight"
-            style={{ fontFamily: "var(--font-poppins)", color: "var(--primary-1)" }}
+            className="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-4"
+            style={{ color: "var(--primary-1)" }}
           >
             Why{" "}
             <span style={{ color: "var(--primary-2)" }}>Futuroupanishad </span>?
           </h2>
 
-          {/* Accent underline */}
-          <div className="flex justify-center mt-4 mb-5">
-            <div
-              ref={accentLineRef}
-              className="h-[3px] w-20 rounded-full"
-              style={{ background: "var(--primary-2)" }}
-            />
-          </div>
-
           <p
             ref={taglineRef}
             className="text-base md:text-lg max-w-xl mx-auto leading-relaxed"
-            style={{ color: "rgba(2,30,72,0.5)", fontFamily: "var(--font-roboto)" }}
+            style={{
+              color: "rgba(2,30,72,0.5)",
+              fontFamily: "var(--font-roboto)",
+            }}
           >
             We don't just teach — we transform. From confusion to confidence,
             one step at a time.
@@ -222,7 +225,6 @@ export default function WhyFuturoupanishad() {
                 style={{
                   background: "rgba(2,30,72,0.05)",
                   color: "rgba(2,30,72,0.35)",
-                  fontFamily: "var(--font-poppins)",
                 }}
               >
                 {f.tag}
@@ -230,16 +232,23 @@ export default function WhyFuturoupanishad() {
 
               {/* Emoji in a soft pill */}
               <div
-                className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-5 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
-                style={{ background: "rgba(197,116,67,0.10)" }}
+                className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-5 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 bg-[#f6f6f6] border border-primary-1/40"
+                
               >
-                {f.emoji}
+                <Image
+                  src={f.icon}
+                  alt={f.title + " icon"}
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                />
+                
               </div>
 
               {/* Title */}
               <h3
                 className="text-base font-bold mb-1 leading-snug"
-                style={{ color: "var(--primary-1)", fontFamily: "var(--font-poppins)" }}
+                style={{ color: "var(--primary-1)" }}
               >
                 {f.title}
               </h3>
@@ -247,13 +256,20 @@ export default function WhyFuturoupanishad() {
               {/* Divider */}
               <div
                 className="h-[2px] rounded mb-3 transition-all duration-300 group-hover:w-12"
-                style={{ width: "1.75rem", background: "var(--primary-2)", opacity: 0.7 }}
+                style={{
+                  width: "1.75rem",
+                  background: "var(--primary-2)",
+                  opacity: 0.7,
+                }}
               />
 
               {/* Description */}
               <p
                 className="text-sm leading-relaxed"
-                style={{ color: "rgba(2,30,72,0.52)", fontFamily: "var(--font-roboto)" }}
+                style={{
+                  color: "rgba(2,30,72,0.52)",
+                  fontFamily: "var(--font-roboto)",
+                }}
               >
                 {f.desc}
               </p>

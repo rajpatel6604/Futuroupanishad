@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,19 +10,19 @@ gsap.registerPlugin(ScrollTrigger);
 // Row 2: 2 cards split 50/50 (light / dark)
 const row1 = [
   {
-    emoji: "🎓",
+    icon: "/images/who/graduated.png",
     title: "Students (Class 10–12)",
     desc: "Understand real-life concepts beyond textbooks and choose the right career path with clarity.",
     dark: true,
   },
   {
-    emoji: "🚀",
+    icon: "/images/why/career.jpeg",
     title: "Career Seekers",
     desc: 'Confused about "What next?" after 10th/12th? Get the direction you\'ve been missing.',
     dark: false,
   },
   {
-    emoji: "🎯",
+    icon: "/images/who/goal.png",
     title: "Goal-Oriented Learners",
     desc: "Build focus, discipline, and a success mindset that schools never teach.",
     dark: true,
@@ -30,13 +31,13 @@ const row1 = [
 
 const row2 = [
   {
-    emoji: "👨‍👩‍👧",
+    icon: "/images/who/family.png",
     title: "Parents",
     desc: "Get the right guidance to support your child's future decisions with confidence and clarity.",
     dark: false,
   },
   {
-    emoji: "🌟",
+    icon: "/images/who/graduated (1).png",
     title: "Dreamers",
     desc: "Young minds with big dreams but no roadmap — we build that path with you, step by step.",
     dark: true,
@@ -80,7 +81,9 @@ function Card({ item, cardRef }) {
 
       {/* Emoji */}
       <span className="text-4xl mb-5 block transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 origin-left">
-        {item.emoji}
+        {item.icon && (
+          <Image src={item.icon} alt={item.title} width={48} height={48} />
+        )}
       </span>
 
       {/* Title */}
@@ -88,7 +91,6 @@ function Card({ item, cardRef }) {
         className="text-lg font-bold mb-2 leading-snug"
         style={{
           color: item.dark ? "#ffffff" : "var(--primary-1)",
-          fontFamily: "var(--font-poppins)",
         }}
       >
         {item.title}
@@ -227,7 +229,7 @@ export default function WhoFuturoupanishad() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden py-28 px-4"
+      className="relative overflow-hidden py-22 px-4"
       style={{ background: "#ffffff" }}
     >
       {/* Giant BG text */}
@@ -240,7 +242,6 @@ export default function WhoFuturoupanishad() {
           className="text-[18vw] font-black uppercase whitespace-nowrap"
           style={{
             color: "var(--primary-1)",
-            fontFamily: "var(--font-poppins)",
             letterSpacing: "-0.05em",
           }}
         >
@@ -254,24 +255,14 @@ export default function WhoFuturoupanishad() {
 
           <h2
             ref={headingRef}
-            className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight"
-            style={{ color: "var(--primary-1)", fontFamily: "var(--font-poppins)" }}
+            className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight"
+            style={{ color: "var(--primary-1)" }}
           >
             Who is{" "}
             <span className="relative inline-block" style={{ color: "var(--primary-2)" }}>
               Futuroupanishad
-              <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 10" fill="none">
-                <path
-                  d="M0 6 Q37.5 0 75 6 Q112.5 12 150 6 Q187.5 0 225 6 Q262.5 12 300 6"
-                  stroke="var(--primary-2)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  fill="none"
-                  opacity="0.45"
-                />
-              </svg>
             </span>{" "}
-            For?
+            For ?
           </h2>
 
           <p
@@ -301,13 +292,6 @@ export default function WhoFuturoupanishad() {
             <Card key={i} item={item} cardRef={(el) => (r2Refs.current[i] = el)} />
           ))}
         </div>
-      </div>
-
-      {/* Bottom accent stripe */}
-      <div className="absolute bottom-0 left-0 right-0 h-[3px] flex">
-        <div className="flex-1" style={{ background: "var(--primary-1)" }} />
-        <div className="w-16" style={{ background: "var(--primary-2)" }} />
-        <div className="flex-1" style={{ background: "var(--primary-1)" }} />
       </div>
     </section>
   );

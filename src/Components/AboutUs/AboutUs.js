@@ -24,77 +24,84 @@ const checkpoints = [
 
 export default function AboutUs() {
   const sectionRef = useRef(null);
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
-  const statsRef = useRef(null);
-  const glowRef = useRef(null);
+  const heroRef = useRef(null);
+  const heroTextRef = useRef(null);
+  const heroImgRef = useRef(null);
+  const missionRef = useRef(null);
+  const missionCardsRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Left column slides in
+      /* ── Hero banner: text slides in from left */
       gsap.fromTo(
-        leftRef.current,
-        { opacity: 0, x: -50 },
+        heroTextRef.current,
+        { opacity: 0, x: -60 },
         {
           opacity: 1,
           x: 0,
-          duration: 0.9,
+          duration: 1,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
+            trigger: heroRef.current,
+            start: "top 80%",
             once: true,
           },
-        }
+        },
       );
 
-      // Right column slides in
+      /* ── Hero banner: image reveals from right with clip */
       gsap.fromTo(
-        rightRef.current?.children ? Array.from(rightRef.current.children) : [],
-        { opacity: 0, x: 40 },
+        heroImgRef.current,
+        { opacity: 0, clipPath: "inset(0 100% 0 0)" },
         {
           opacity: 1,
-          x: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          stagger: 0.1,
+          clipPath: "inset(0 0% 0 0)",
+          duration: 1.1,
+          ease: "power4.inOut",
+          delay: 0.2,
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
+            trigger: heroRef.current,
+            start: "top 80%",
             once: true,
           },
-        }
+        },
       );
 
-      // Glow pulse
-      gsap.to(glowRef.current, {
-        scale: 1.2,
-        opacity: 0.6,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
+      /* ── Mission section heading */
+      gsap.fromTo(
+        missionRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: missionRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        },
+      );
 
-      // Stats pop
-      const statEls = statsRef.current?.querySelectorAll(".stat-item");
-      if (statEls?.length) {
+      /* ── Mission cards stagger */
+      const cards = missionCardsRef.current?.querySelectorAll(".mission-card");
+      if (cards?.length) {
         gsap.fromTo(
-          statEls,
-          { opacity: 0, y: 24, scale: 0.85 },
+          cards,
+          { opacity: 0, y: 40 },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: "back.out(1.5)",
-            stagger: 0.09,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.15,
             scrollTrigger: {
-              trigger: statsRef.current,
+              trigger: missionCardsRef.current,
               start: "top 85%",
               once: true,
             },
-          }
+          },
         );
       }
     }, sectionRef);
@@ -103,161 +110,235 @@ export default function AboutUs() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden bg-white"
-      style={{ fontFamily: "'Poppins', sans-serif" }}
-    >
-      {/* Subtle bg blobs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(2,30,72,0.05) 0%, transparent 70%)" }} />
-        <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(197,116,67,0.07) 0%, transparent 70%)" }} />
-      </div>
+    <section ref={sectionRef} className="">
+      {/* ═══════════════════════════════════════════
+          HERO BANNER  — dark bg, text left / image right
+      ═══════════════════════════════════════════ */}
+      <div
+        ref={heroRef}
+        className="relative overflow-hidden"
+        style={{ background: "#021e48" }}
+      >
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[340px]">
+          {/* LEFT: text */}
+          <div
+            ref={heroTextRef}
+            className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-14 lg:py-20"
+          >
+            {/* italic "About" label */}
+            <p
+              className="text-xl sm:text-2xl mb-2 italic font-semibold"
+              style={{ color: "#c57443" }}
+            >
+              About
+            </p>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-5">
+              FuturOpanishad
+            </h1>
 
-        {/* ── Main grid: image left | content right */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+            <p className="text-sm sm:text-base leading-relaxed text-white/75 max-w-md mb-4">
+              After 10th &amp; 12th exams, thousands of students face one
+              burning question —
+              <em className="font-semibold not-italic text-white gujarati">
+                {" "}
+                &quot;હવે આગળ શું?&quot;
+              </em>{" "}
+              Many make rushed decisions and spend years regretting them.
+            </p>
 
-          {/* ── LEFT: Image (2/5 width on desktop) */}
-          <div ref={leftRef} className="lg:col-span-2 relative flex justify-center lg:justify-start">
-            {/* Glow */}
+            <p className="text-sm sm:text-base leading-relaxed text-white/75 max-w-md">
+              <strong className="text-white">FuturOpanishad</strong> is that
+              answer — helping students discover clarity from within, build
+              discipline, and develop the character needed for lasting success.
+            </p>
+          </div>
+
+          {/* RIGHT: full-bleed image that bleeds to the edge */}
+          <div
+            ref={heroImgRef}
+            className="relative hidden lg:block"
+            style={{ clipPath: "inset(0 0 0 0)" }}
+          >
+            <Image
+              src="https://i.pinimg.com/1200x/33/21/ae/3321ae1b9b6cd7db540d6d49211068f7.jpg"
+              alt="FuturOpanishad seminar"
+              fill
+              className="object-cover object-center"
+              sizes="50vw"
+              priority
+            />
+            {/* gradient overlay to blend into dark bg on the left edge */}
             <div
-              ref={glowRef}
-              className="absolute rounded-2xl blur-2xl pointer-events-none"
+              className="absolute inset-0"
               style={{
-                inset: "10%",
-                background: "linear-gradient(135deg, rgba(2,30,72,0.2), rgba(197,116,67,0.2))",
-                opacity: 0.45,
+                background:
+                  "linear-gradient(to right, #021e48 0%, rgba(2,30,72,0.3) 35%, transparent 70%)",
               }}
             />
-
+            {/* accent color strip at bottom */}
             <div
-              className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-full rounded-2xl overflow-hidden shadow-xl"
-              style={{ border: "2px solid rgba(197,116,67,0.3)" }}
+              className="absolute bottom-0 left-0 right-0 h-1"
+              style={{ background: "#c57443" }}
+            />
+          </div>
+        </div>
+
+        {/* accent stripe at very bottom of hero block */}
+        <div
+          className="absolute bottom-0 left-0 w-full h-[3px]"
+          style={{
+            background:
+              "linear-gradient(to right, #c57443 0%, rgba(197,116,67,0.2) 60%, transparent 100%)",
+          }}
+        />
+      </div>
+
+      {/* ═══════════════════════════════════════════
+          MISSION & VISION SECTION
+      ═══════════════════════════════════════════ */}
+      <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 py-14 sm:py-20">
+        {/* Heading */}
+        <div ref={missionRef} className="mb-10">
+          <h2
+            className="text-3xl sm:text-4xl font-extrabold"
+            style={{ color: "#021e48" }}
+          >
+            Mission <span style={{ color: "#c57443" }}>&amp;</span> Vision
+          </h2>
+        </div>
+
+        {/* Two-column cards */}
+        <div
+          ref={missionCardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          {/* Card 1 — Mission */}
+          <div className="mission-card flex items-start gap-5">
+            {/* icon */}
+            <div className="flex-shrink-0">
+              <Image
+                src="/images/icons/mission.png"
+                alt="Mission"
+                width={64}
+                height={64}
+                className="object-cover object-center"
+              />
+            </div>
+            <p
+              className="text-sm sm:text-base leading-relaxed"
+              style={{ color: "#475569" }}
             >
-              {/* 3:4 aspect ratio — tighter than before */}
-              <div className="relative w-full" style={{ aspectRatio: "3/4" }}>
-                <Image
-                  src="https://i.pinimg.com/1200x/33/21/ae/3321ae1b9b6cd7db540d6d49211068f7.jpg"
-                  alt="FuturOpanishad seminar"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 320px, 400px"
-                  priority
-                />
-                {/* Dark bottom fade */}
-                <div className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(2,30,72,0.7) 0%, transparent 55%)" }} />
+              Our mission is to equip students with the skills, knowledge and
+              inner clarity they need to ace their career choices and turn their
+              dreams into reality.
+            </p>
+          </div>
 
-                {/* Top chapter badge */}
-                <div className="absolute top-3 left-3">
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full text-white"
-                    style={{ background: "rgba(197,116,67,0.92)", backdropFilter: "blur(6px)" }}>
-                    🚀 Chapter 1
-                  </span>
-                </div>
+          {/* Card 2 — Vision */}
+          <div className="mission-card flex items-start gap-5">
+            {/* eye icon */}
+            <div className="flex-shrink-0">
+              <Image
+                src="/images/icons/vision.png"
+                alt="Mission"
+                width={64}
+                height={64}
+                className="object-cover object-center"
+              />
+            </div>
+            <p
+              className="text-sm sm:text-base leading-relaxed"
+              style={{ color: "#475569" }}
+            >
+              We place equal importance on cultivating well-rounded individuals
+              with strong character and a commitment to making a positive impact
+              on their families and nation.
+            </p>
+          </div>
+        </div>
 
-                {/* Stats overlay strip at bottom of image */}
-                <div
-                  ref={statsRef}
-                  className="absolute bottom-2 left-2 right-2 grid grid-cols-2 gap-1"
-                  style={{ background: "rgba(2,30,72,0.15)" }}
+        {/* Divider */}
+        <div
+          className="mt-12 h-px"
+          style={{ background: "rgba(2,30,72,0.1)" }}
+        />
+
+        {/* Checkpoints + Stats row */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          {/* Checkpoints */}
+          <div className="space-y-3">
+            {checkpoints.map((item, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <span
+                  className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0"
+                  style={{ background: "#c57443" }}
                 >
-                  {stats.map((s, i) => (
-                    <div
-                      key={i}
-                      className="stat-item text-center py-3 rounded-lg"
-                      style={{
-                        background: i % 2 === 0
-                          ? "rgba(2,30,72,0.82)"
-                          : "rgba(197,116,67,0.82)",
-                        backdropFilter: "blur(8px)",
-                      }}
-                    >
-                      <p className="text-base sm:text-lg font-extrabold text-white leading-none">{s.number}</p>
-                      <p className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-white/70 mt-0.5">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
+                  ✓
+                </span>
+                <p
+                  className="text-sm font-semibold"
+                  style={{ color: "#021e48" }}
+                >
+                  {item}
+                </p>
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* ── RIGHT: Content (3/5 width on desktop) */}
-          <div ref={rightRef} className="lg:col-span-3 space-y-5">
-
-            {/* Badge + heading */}
-            <div>
-              <span
-                className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.2em] uppercase px-3.5 py-1.5 rounded-full mb-3"
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 gap-4">
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                className="text-center py-4 px-2 rounded-xl"
                 style={{
-                  color: "#c57443",
-                  background: "rgba(197,116,67,0.09)",
-                  border: "1px solid rgba(197,116,67,0.25)",
+                  background:
+                    i % 2 === 0
+                      ? "rgba(2,30,72,0.06)"
+                      : "rgba(197,116,67,0.08)",
+                  border: `1px solid ${i % 2 === 0 ? "rgba(2,30,72,0.12)" : "rgba(197,116,67,0.2)"}`,
                 }}
               >
-                Our Story
-              </span>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold leading-tight tracking-tight">
-                <span style={{ color: "#021e48" }}>About </span>
-                <span style={{ color: "#c57443" }}>FuturOpanishad</span>
-              </h2>
-
-              {/* Thin divider */}
-              <div className="flex items-center gap-3 mt-3">
-                <div className="h-[2px] w-10 rounded-full" style={{ background: "#021e48" }} />
-                <div className="h-[2px] w-5 rounded-full" style={{ background: "#c57443" }} />
+                <p
+                  className="text-2xl font-extrabold leading-none"
+                  style={{ color: i % 2 === 0 ? "#021e48" : "#c57443" }}
+                >
+                  {s.number}
+                </p>
+                <p
+                  className="text-[10px] font-semibold uppercase tracking-wider mt-1"
+                  style={{ color: "#64748b" }}
+                >
+                  {s.label}
+                </p>
               </div>
-            </div>
-
-            {/* Problem statement — compact */}
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: "#475569" }}>
-              After 10th & 12th exams, thousands of students face one burning question —
-              <em className="font-semibold not-italic" style={{ color: "#021e48" }}> &quot;હવે આગળ શું?&quot;</em>
-              {" "}Many make rushed decisions and spend years regretting them. Parents fear the
-              world's distractions and pray their child walks the right road.
-            </p>
-
-            <p className="text-sm sm:text-base leading-relaxed" style={{ color: "#475569" }}>
-              <strong style={{ color: "#021e48" }}>FuturOpanishad</strong> is that answer — helping students
-              discover clarity from within, build discipline, and develop the character needed for lasting success.
-            </p>
-
-            {/* Checkpoints */}
-            <div className="space-y-2 pt-3 border-t" style={{ borderColor: "rgba(2,30,72,0.08)" }}>
-              {checkpoints.map((item, i) => (
-                <div key={i} className="flex items-center gap-2.5">
-                  <span
-                    className="w-4 h-4 rounded-full flex items-center justify-center text-[9px] flex-shrink-0 font-bold text-white"
-                    style={{ background: "#c57443" }}
-                  >✓</span>
-                  <p className="text-sm font-medium" style={{ color: "#021e48" }}>{item}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA pill */}
-            <div className="pt-1">
-              <Link
-                href="#contact"
-                className="inline-flex items-center gap-2 text-sm font-bold px-6 py-3 rounded-full no-underline transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
-                style={{
-                  background: "linear-gradient(135deg, #021e48, #0a3a7a)",
-                  color: "white",
-                  boxShadow: "0 4px 16px rgba(2,30,72,0.22)",
-                }}
-              >
-                Join FuturOpanishad
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            </div>
+            ))}
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-10">
+          <Link
+            href="#contact"
+            className="inline-flex items-center gap-2 text-sm font-bold px-7 py-3 rounded-full no-underline transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95"
+            style={{
+              background: "linear-gradient(135deg, #021e48, #0a3a7a)",
+              color: "white",
+              boxShadow: "0 4px 16px rgba(2,30,72,0.22)",
+            }}
+          >
+            Join FuturOpanishad
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M3 7h8M7.5 3.5L11 7l-3.5 3.5"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

@@ -86,7 +86,6 @@ export default function Breadcrumb({ items = [], title = "", bgImage = "" }) {
         <h1
           ref={titleRef}
           className="text-2xl md:text-4xl font-extrabold text-white leading-tight tracking-tight mb-3"
-          style={{ fontFamily: "var(--font-poppins)" }}
         >
           {title}
         </h1>
@@ -130,7 +129,6 @@ export default function Breadcrumb({ items = [], title = "", bgImage = "" }) {
                         color: "#ffffff",
                         background: "rgba(197,116,67,0.22)",
                         border: "1px solid rgba(197,116,67,0.35)",
-                        fontFamily: "var(--font-poppins)",
                       }}
                     >
                       {item.label}

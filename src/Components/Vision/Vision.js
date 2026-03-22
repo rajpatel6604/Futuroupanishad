@@ -94,7 +94,6 @@ export default function VisionMission() {
             style={{
               color: "var(--primary-2)",
               background: "rgba(197,116,67,0.10)",
-              fontFamily: "var(--font-poppins)",
               border: "1px solid rgba(197,116,67,0.2)",
             }}
           >
@@ -104,7 +103,7 @@ export default function VisionMission() {
           <h2
             ref={headingRef}
             className="text-3xl md:text-5xl font-extrabold tracking-tight"
-            style={{ color: "var(--primary-1)", fontFamily: "var(--font-poppins)" }}
+            style={{ color: "var(--primary-1)" }}
           >
             Our Purpose &{" "}
             <span style={{ color: "var(--primary-2)" }}>Direction</span>
@@ -166,7 +165,6 @@ export default function VisionMission() {
                 style={{
                   color: "var(--primary-1)",
                   background: "rgba(2,30,72,0.07)",
-                  fontFamily: "var(--font-poppins)",
                 }}
               >
                 Vision
@@ -175,7 +173,7 @@ export default function VisionMission() {
 
             <h3
               className="text-2xl font-extrabold mb-1"
-              style={{ color: "var(--primary-1)", fontFamily: "var(--font-poppins)" }}
+              style={{ color: "var(--primary-1)" }}
             >
               Our Vision
             </h3>
@@ -241,7 +239,6 @@ export default function VisionMission() {
                 style={{
                   color: "var(--primary-2)",
                   background: "rgba(197,116,67,0.18)",
-                  fontFamily: "var(--font-poppins)",
                 }}
               >
                 Mission
@@ -250,7 +247,6 @@ export default function VisionMission() {
 
             <h3
               className="text-2xl font-extrabold mb-1 text-white"
-              style={{ fontFamily: "var(--font-poppins)" }}
             >
               Our Mission
             </h3>

@@ -48,7 +48,6 @@ export default function Navbar() {
     <>
       <nav
         style={{
-          fontFamily: "'Poppins', sans-serif",
           position: "fixed",
           top: 0,
           left: 0,

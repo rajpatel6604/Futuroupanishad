@@ -1,191 +1,173 @@
 "use client";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import Image from "next/image";
 
-import Link from "next/link";
-import { useState, useEffect, useCallback } from "react";
-
-const slides = [
+const features = [
   {
-    id: 1,
-    // date: "January 20, 2025",
-    title: "જીવન ની સાચી દિશા એટલે FuturOpanishad",
-    sub1: "Clarity",
-    sub2: "Career ",
-    sub3: "Chachter",
-    bg: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.8" />
+        <polygon points="8,6 15,10 8,14" fill="currentColor" />
+      </svg>
+    ),
+    sub: "Course Duration",
+    main: "3+ Years",
   },
   {
-    id: 2,
-    // date: "February 14, 2025",
-    title: "હું શું કરું?’ નો એક જ જવાબ FuturOpanishad",
-    sub1: "Clarity",
-    sub2: "Career ",
-    sub3: "Character",
-    bg: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1600&q=80",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2L12.4 7.4L18 8.2L14 12.1L15 18L10 15.3L5 18L6 12.1L2 8.2L7.6 7.4Z" stroke="currentColor" strokeWidth="1.8" fill="none" />
+      </svg>
+    ),
+    sub: "100% No Questions",
+    main: "Refund Policy",
   },
   {
-    id: 3,
-    // date: "March 10, 2025",
-    title: "Confusion થી Clarity સુધીનો સફર FuturOpanishad",
-    sub1: "Clarity",
-    sub2: "Career ",
-    sub3: "Character",
-    bg: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+        <path d="M3 10 Q10 2 17 10 Q10 18 3 10Z" stroke="currentColor" strokeWidth="1.8" fill="none" />
+        <circle cx="10" cy="10" r="3" fill="currentColor" />
+      </svg>
+    ),
+    sub: "Available In",
+    main: "English & Gujarati",
   },
   {
-    id: 4,
-    // date: "March 10, 2025",
-    title: "Future ને સમજવાનો રસ્તો એટલે FuturOpanishad",
-    sub1: "Clarity",
-    sub2: "Career ",
-    sub3: "Character",
-    bg: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
+        <rect x="2" y="5" width="16" height="12" rx="3" stroke="currentColor" strokeWidth="1.8" fill="none" />
+        <path d="M8 9l4 2-4 2V9z" fill="currentColor" />
+      </svg>
+    ),
+    sub: "Group Live",
+    main: "Q&A Sessions",
   },
 ];
 
-const ChevronLeft = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2.5}
-    className="w-5 h-5"
-  >
-    <path d="m15 18-6-6 6-6" />
-  </svg>
-);
-
-const ChevronRight = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2.5}
-    className="w-5 h-5"
-  >
-    <path d="m9 18 6-6-6-6" />
-  </svg>
-);
-
-// ── Component ──────────────────────────────────────────
-
-export default function HeroSlider() {
-  const [current, setCurrent] = useState(0);
-  const [fade, setFade] = useState(true);
-
-  const goTo = useCallback((index) => {
-    setFade(false);
-    setTimeout(() => {
-      setCurrent(index);
-      setFade(true);
-    }, 400);
-  }, []);
-
-  const next = useCallback(() => {
-    goTo((current + 1) % slides.length);
-  }, [current, goTo]);
-
-  const prev = useCallback(() => {
-    goTo((current - 1 + slides.length) % slides.length);
-  }, [current, goTo]);
+export default function Hero() {
+  const heroRef    = useRef(null);
+  const badgeRef   = useRef(null);
+  const headingRef = useRef(null);
+  const subRef     = useRef(null);
+  const featRef    = useRef(null);
 
   useEffect(() => {
-    const timer = setInterval(next, 5000);
-    return () => clearInterval(timer);
-  }, [next]);
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  const slide = slides[current];
+    tl.fromTo(badgeRef.current,   { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5 })
+      .fromTo(headingRef.current, { opacity: 0, y: 30  }, { opacity: 1, y: 0, duration: 0.7 }, "-=0.2")
+      .fromTo(subRef.current,     { opacity: 0, y: 20  }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
+      .fromTo(
+        featRef.current?.querySelectorAll(".feat-item") ?? [],
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 },
+        "-=0.2"
+      );
+  }, []);
 
   return (
-    <>
-      {/* Background Image */}
+    <section
+      ref={heroRef}
+      className="relative h-[93vh] overflow-hidden"
+      style={{ background: "#fafafa" }}
+    >
+      {/* Grid lines */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
-        style={{ backgroundImage: `url(${slide.bg})`, opacity: fade ? 1 : 0 }}
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(2,30,72,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(2,30,72,0.05) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
       />
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
 
-      {/* Slide Content */}
-      <div
-        className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4 transition-opacity duration-500 max-w-[1200px] mx-auto"
-        style={{ opacity: fade ? 1 : 0 }}
-      >
+      {/* Wave image */}
+      <img
+        src="/images/wave/wave.png"
+        alt="wave"
+        className="absolute left-0 -bottom-30 right-0 w-full pointer-events-none"
+      />
 
-        {/* Title */}
-        <h1 className="text-white font-extrabold text-5xl md:text-4xl lg:text-6xl  leading-tight mb-8 whitespace-pre-line drop-shadow-lg">
-          {slide.title}
-        </h1>
-
-        {/* Stats */}
-        <div className="flex flex-wrap backdrop-blur-lg px-4 py-2 rounded-full border-1 border-[#eee] items-center justify-center gap-4 md:gap-6 mb-10 text-white text-sm font-medium tracking-wider">
-          <span className="flex items-center gap-2">
-            <img
-              className="h-[2px] w-[20px] md:h-[45px] object-contain"
-              src="/images/icons/clarity.png"
-            /> 
-            {slide.sub1}
-          </span>
-          <span className="text-white/30 hidden md:inline">|</span>
-          <span className="flex items-center gap-2">
-            <img
-              className="h-[2px] w-[20px] md:h-[45px] object-contain"
-              src="/images/icons/career-path.png"
-            />
-
-            {slide.sub2}
-          </span>
-          <span className="text-white/30 hidden md:inline">|</span>
-          <span className="flex items-center gap-2">
-            <img
-              className="h-[2px] w-[20px] md:h-[45px] object-contain"
-              src="/images/icons/boy.png"
-            />
-            {slide.sub3}
+      {/* Text content */}
+      <div className="relative z-10 flex flex-col items-center text-center pt-16 px-4">
+        <div ref={badgeRef} className="mb-5">
+          <span
+            className="inline-block text-xs font-semibold px-5 py-1.5 rounded-full"
+            style={{
+              border: "1.5px solid rgba(2,30,72,0.2)",
+              color: "#021e48",
+              background: "white",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Chapter 1
           </span>
         </div>
 
-        {/* CTA */}
-        <Link
-          href="#"
-          className="bg-orange-500 hover:bg-orange-700 text-gray-900 font-bold text-base px-10 py-3 rounded-full transition-colors duration-200 no-underline shadow-lg"
+        <h1
+          ref={headingRef}
+          className="font-extrabold leading-tight mb-3"
+          style={{
+            fontSize: "clamp(2.6rem, 8vw, 5.5rem)",
+            color: "#021e48",
+            fontFamily: "'Georgia', 'Times New Roman', serif",
+            maxWidth: 990,
+          }}
         >
-          Book Now
-        </Link>
+          Design Your Destiny
+        </h1>
+
+        <p
+          ref={subRef}
+          className="text-base sm:text-lg"
+          style={{ color: "#475569", maxWidth: 990, lineHeight: 1.65 }}
+        >
+          The Ultimate Clarity Toolkit For Career, Character &amp; Confidence
+        </p>
       </div>
 
-      {/* Prev Arrow */}
-      <button
-        onClick={prev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/25 text-white p-3 rounded-r-lg backdrop-blur-sm transition-colors duration-200"
-        aria-label="Previous slide"
+      {/* ── Feature cards — pinned to bottom ── */}
+      <div
+        ref={featRef}
+        className="absolute bottom-12 left-0 right-0 z-20 px-6 sm:px-10 lg:px-16"
       >
-        <ChevronLeft />
-      </button>
-
-      {/* Next Arrow */}
-      <button
-        onClick={next}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/25 text-white p-3 rounded-l-lg backdrop-blur-sm transition-colors duration-200"
-        aria-label="Next slide"
-      >
-        <ChevronRight />
-      </button>
-
-      {/* Dot Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            className={`rounded-full transition-all duration-300 ${
-              i === current
-                ? "bg-orange-500 w-6 h-2.5"
-                : "bg-white/40 hover:bg-white/70 w-2.5 h-2.5"
-            }`}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto">
+          {features.map((f, i) => (
+            <div
+              key={i}
+              className="feat-item flex items-center gap-3 px-4 py-3.5 rounded-xl"
+              style={{
+                background: "rgba(255,255,255,0.12)",
+                border: "1.5px solid rgba(255,255,255,0.25)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+              }}
+            >
+              <span
+                className="flex-shrink-0 p-2 rounded-lg"
+                style={{
+                  background: "rgba(255,255,255,0.15)",
+                  color: "white",
+                }}
+              >
+                {f.icon}
+              </span>
+              <div className="text-left min-w-0">
+                <p
+                  className="text-[10px] font-medium uppercase tracking-wider truncate"
+                  style={{ color: "rgba(255,255,255,0.65)" }}
+                >
+                  {f.sub}
+                </p>
+                <p className="text-sm sm:text-base font-bold text-white leading-tight">
+                  {f.main}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </section>
   );
 }

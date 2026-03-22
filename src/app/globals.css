@@ -5,10 +5,8 @@
 @import "tailwindcss";
 
 :root {
-  --font-poppins: "Poppins", sans-serif;
-  --font-roboto: "Roboto", sans-serif;
-  --primary-1 :#021e48;
-  --primary-2 :#c57443;
+  --primary-1: #021e48;
+  --primary-2: #c57443;
 }
 
 @theme {
@@ -19,17 +17,11 @@
 body {
   overflow-x: hidden;
   background: #fff;
+  font-family: var(--font-poppins);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,a {
-  font-family: "Poppins", sans-serif;
-}
-p {
-  font-family: "Roboto", sans-serif;
+
+.gujarati {
+  font-family: var(--font-gujarati);
 }
 
 /* testimonials */

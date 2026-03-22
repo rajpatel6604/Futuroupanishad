@@ -92,24 +92,40 @@ export default function Testimonials() {
     <section
       className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
       style={{
-        fontFamily: "'Poppins', sans-serif",
         background: "#f8f6f3",
       }}
     >
       {/* ── Background decoration */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
         <div
           className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(2,30,72,0.05) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(2,30,72,0.05) 0%, transparent 70%)",
+          }}
         />
         <div
           className="absolute -bottom-32 -right-32 w-[420px] h-[420px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(197,116,67,0.08) 0%, transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(197,116,67,0.08) 0%, transparent 70%)",
+          }}
         />
         {/* Dot grid */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.035]" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="absolute inset-0 w-full h-full opacity-[0.035]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
-            <pattern id="tdots" width="28" height="28" patternUnits="userSpaceOnUse">
+            <pattern
+              id="tdots"
+              width="28"
+              height="28"
+              patternUnits="userSpaceOnUse"
+            >
               <circle cx="2" cy="2" r="1.5" fill="#021e48" />
             </pattern>
           </defs>
@@ -118,7 +134,6 @@ export default function Testimonials() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* ── Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
           <div>
@@ -163,7 +178,13 @@ export default function Testimonials() {
               aria-label="Previous"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M10 3L5 8l5 5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
 
@@ -178,7 +199,13 @@ export default function Testimonials() {
               aria-label="Next"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M6 3l5 5-5 5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           </div>
@@ -245,7 +272,10 @@ export default function Testimonials() {
                         >
                           {t.name}
                         </p>
-                        <p className="text-[11px] leading-tight mt-0.5" style={{ color: "#94a3b8" }}>
+                        <p
+                          className="text-[11px] leading-tight mt-0.5"
+                          style={{ color: "#94a3b8" }}
+                        >
                           {t.location}
                         </p>
                       </div>

@@ -209,7 +209,6 @@ export default function Quotes() {
       ref={sectionRef}
       className="relative overflow-hidden"
       style={{
-        fontFamily: "'Poppins', sans-serif",
         minHeight: "100vh",
         background: "var(--primary-1, #021e48)",
       }}
